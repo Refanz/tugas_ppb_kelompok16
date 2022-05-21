@@ -1,14 +1,10 @@
 package com.kelompok16.tugasppbkelompok16;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.journeyapps.barcodescanner.CaptureActivity;
 
-import android.os.Bundle;
 
-public class ScanActivity extends AppCompatActivity {
+public class ScanActivity extends CaptureActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scan);
-    }
+
+
 }

@@ -34,19 +34,18 @@
         <EditText
             android:id="@+id/editEmail"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/txtLogin"
             android:drawableStart="@drawable/ic_baseline_email_24"
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textSize="14sp" />
+            android:inputType="textEmailAddress"/>
 
         <EditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:layout_below="@id/editEmail"
             android:layout_marginTop="20dp"

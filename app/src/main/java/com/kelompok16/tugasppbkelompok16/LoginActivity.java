@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -22,11 +22,21 @@ public class LoginActivity extends AppCompatActivity {
 
         initWidget();
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
-                startActivity(intent);
+        btnLogin.setOnClickListener(v -> {
+            String email = etEmail.getText().toString();
+            String password = etPassword.getText().toString();
+
+            if(email.equals("") || password.equals("")){
+                Toast.makeText(LoginActivity.this, "Please fill all the fields", Toast.LENGTH_SHORT).show();
+            }else{
+                boolean checkEmailPass = DB.checkEmailPassword(email, password);
+                if(checkEmailPass){
+                    Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(LoginActivity.this, "Email/Password is doesn't exists", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -35,6 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (MaterialButton) findViewById(R.id.btnLoginP);
         etEmail = (EditText) findViewById(R.id.editEmail);
         etPassword = (EditText) findViewById(R.id.editPassword);
-        DB = new DBHelper(this);
+        DB = new DBHelper(LoginActivity.this);
     }
 }

@@ -37,7 +37,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     void initWidget(){
-        btnLogin = (MaterialButton) findViewById(R.id.btnLogin);
-        btnRegister = (MaterialButton) findViewById(R.id.btnRegister);
+        btnLogin = (MaterialButton) findViewById(R.id.btnWLogin);
+        btnRegister = (MaterialButton) findViewById(R.id.btnWRegister);
     }
 }

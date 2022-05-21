@@ -28,21 +28,22 @@
             android:padding="20dp">
 
             <TextView
+                android:id="@+id/txtNamaDashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-black"
                 android:text="Refanda Surya Saputra"
-                android:textSize="20sp"
                 android:textColor="@color/white"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:textSize="13sp"
                 android:text="College Student"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -124,8 +125,8 @@
                     android:id="@+id/ic_jadwal"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_centerInParent="true"
+                    android:layout_marginBottom="15dp"
                     android:src="@drawable/ic_jadwal" />
 
                 <TextView
@@ -151,8 +152,8 @@
                     android:id="@+id/ic_logout"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_centerInParent="true"
+                    android:layout_marginBottom="15dp"
                     android:src="@drawable/ic_logout" />
 
                 <TextView

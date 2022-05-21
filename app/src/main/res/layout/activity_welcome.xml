@@ -43,22 +43,22 @@
             android:textStyle="bold"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
+            android:id="@+id/btnWLogin"
             android:layout_width="350dp"
             android:layout_height="55dp"
             android:layout_below="@id/txtInfo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:textStyle="bold"
             android:backgroundTint="@color/sky_blue"
             android:text="LOGIN"
+            android:textStyle="bold"
             app:cornerRadius="20dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnRegister"
+            android:id="@+id/btnWRegister"
             android:layout_width="350dp"
             android:layout_height="55dp"
-            android:layout_below="@id/btnLogin"
+            android:layout_below="@id/btnWLogin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:backgroundTint="@color/sky_blue"
