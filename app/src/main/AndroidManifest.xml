@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TugasPPBKelompok16">
         <activity
-            android:name=".AbsenList"
+            android:name=".AbsenActivity"
             android:exported="false" />
         <activity
             android:name=".DashboardActivity"

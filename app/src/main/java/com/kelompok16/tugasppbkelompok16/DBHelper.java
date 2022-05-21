@@ -97,4 +97,15 @@ public class DBHelper extends SQLiteOpenHelper {
         c.close();
         return false;
     }
+
+    public Cursor showDataAbsenRecyclerView(){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        String[] columns = {"id", "nim", "nama", "tanggal", "jam", "status"};
+        return myDB.query("tb_absen", columns, null, null, null, null, null);
+    }
+
+    public void deleteAllTableAbsen(){
+        SQLiteDatabase myDb = this.getWritableDatabase();
+        myDb.execSQL("DELETE FROM tb_absen");
+    }
 }

@@ -42,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         icAbsen.setOnClickListener(v -> {
-            Intent intent = new Intent(DashboardActivity.this, AbsenList.class);
+            Intent intent = new Intent(DashboardActivity.this, AbsenActivity.class);
             startActivity(intent);
         });
 
@@ -51,7 +51,9 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         icLogout.setOnClickListener(v -> {
-
+            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
     }
@@ -80,7 +82,7 @@ public class DashboardActivity extends AppCompatActivity {
     void addDataAbsen(ScanIntentResult resultContract) {
         String uid = UUID.randomUUID().toString();
 
-        String result = resultContract.toString();
+        String result = resultContract.getContents();
         StringTokenizer tokens = new StringTokenizer(result, "#");
         String nim = tokens.nextToken();
         String nama = tokens.nextToken();
@@ -88,13 +90,13 @@ public class DashboardActivity extends AppCompatActivity {
         String tanggal = new SimpleDateFormat("d-M-yyyy", Locale.getDefault()).format(new Date());
         String jam = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         String status = "";
+        boolean isLate = false;
 
         try {
             Date time1 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).parse(jam);
 
             Date time2 = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).parse("08:00:00");
 
-            boolean isLate = false;
             if (time1 != null)
                 isLate = time1.after(time2);
 
@@ -110,11 +112,9 @@ public class DashboardActivity extends AppCompatActivity {
         boolean cekSimpan = myDB.insertDataAbsensi(uid, nim, nama, tanggal, jam, status);
 
         if(cekSimpan){
-            Toast.makeText(DashboardActivity.this, "Absen berhasil: "+status, Toast.LENGTH_SHORT).show();
-            onResume();
+            Toast.makeText(DashboardActivity.this, "Absen berhasil", Toast.LENGTH_SHORT).show();
         }else{
             Toast.makeText(DashboardActivity.this, "Anda sudah absen!!!", Toast.LENGTH_SHORT).show();
-            onResume();
         }
     }
 }
