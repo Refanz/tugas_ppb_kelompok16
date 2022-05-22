@@ -3,6 +3,7 @@ package com.kelompok16.tugasppbkelompok16;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -21,8 +22,10 @@ import java.util.UUID;
 
 public class DashboardActivity extends AppCompatActivity {
 
-    ImageView icBarcode, icAbsen, icLogout, icJadwal;
-    DBHelper myDB;
+    private ImageView icBarcode, icAbsen, icLogout, icJadwal, imgProfile;
+    private TextView txtNamaDash;
+    private DBHelper myDB;
+    private String emailLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
 
         initWidget();
+
+        getDataIntent();
 
         icBarcode.setOnClickListener(v -> {
             ScanOptions options = new ScanOptions();
@@ -47,7 +52,8 @@ public class DashboardActivity extends AppCompatActivity {
         });
 
         icJadwal.setOnClickListener(v -> {
-
+            Intent intent = new Intent(DashboardActivity.this, JadwalActivity.class);
+            startActivity(intent);
         });
 
         icLogout.setOnClickListener(v -> {
@@ -56,6 +62,13 @@ public class DashboardActivity extends AppCompatActivity {
             finish();
         });
 
+        imgProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(DashboardActivity.this, ProfileActivity.class);
+            intent.putExtra("email", emailLogin);
+            startActivity(intent);
+        });
+
+
     }
 
     void initWidget() {
@@ -63,7 +76,28 @@ public class DashboardActivity extends AppCompatActivity {
         icAbsen = (ImageView) findViewById(R.id.ic_show_absence);
         icLogout = (ImageView) findViewById(R.id.ic_logout);
         icJadwal = (ImageView) findViewById(R.id.ic_jadwal);
+        imgProfile = (ImageView) findViewById(R.id.imgProfile);
+        txtNamaDash = (TextView) findViewById(R.id.txtNamaDashboard);
         myDB = new DBHelper(DashboardActivity.this);
+    }
+
+    void getDataIntent(){
+        Intent loginIntent = getIntent();
+        emailLogin = loginIntent.getStringExtra("email");
+
+        if(emailLogin.equals("refandasuryasaputra@gmail.com")){
+            txtNamaDash.setText("Refanda Surya Saputra");
+        }else if(emailLogin.equals("imamnuralim@gmail.com")){
+            txtNamaDash.setText("Imam Nuralim");
+        }else if(emailLogin.equals("muhammadghulamabdul@gmail.com")){
+            txtNamaDash.setText("Muhammad Ghulam Abdul Nasr");
+        }else if(emailLogin.equals("muhammadrafianwar@gmail.com")){
+            txtNamaDash.setText("Muhammad Rafi Anwar");
+        }else if(emailLogin.equals("fatihrizkyhakim@gmail.com")){
+            txtNamaDash.setText("Fatih Rizky Hakim");
+        }else if(emailLogin.equals("hafizhanjarsaputra@gmail.com")){
+            txtNamaDash.setText("Hafizh Anjar Saputra");
+        }
     }
 
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(), result -> {

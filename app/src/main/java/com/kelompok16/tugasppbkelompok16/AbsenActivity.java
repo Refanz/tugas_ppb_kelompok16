@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,8 +16,7 @@ public class AbsenActivity extends AppCompatActivity {
     private DBHelper myDB;
     private RecyclerView rv;
     private ArrayList<Absen> absenArrayList;
-    private AbsenAdapter absenAdapter;
-
+    private AbsenAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +25,29 @@ public class AbsenActivity extends AppCompatActivity {
 
         initWidget();
 
+        rv.setHasFixedSize(true);
+
+        showRecyclerview();
+
         showData();
 
-        try {
-            rv.setLayoutManager(new LinearLayoutManager(AbsenActivity.this));
-            rv.setAdapter(absenAdapter);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    }
 
+    void showRecyclerview(){
+        rv.setLayoutManager(new LinearLayoutManager(AbsenActivity.this));
+        rv.setAdapter(adapter);
     }
 
     void initWidget() {
         myDB = new DBHelper(AbsenActivity.this);
         rv = (RecyclerView) findViewById(R.id.rvDataAbsen);
         absenArrayList = new ArrayList<>();
-        absenAdapter = new AbsenAdapter(absenArrayList);
+        adapter = new AbsenAdapter(absenArrayList);
     }
 
     void showData() {
+        absenArrayList.clear();
+
         Cursor c = myDB.showDataAbsenRecyclerView();
         while (c.moveToNext()) {
             String id = c.getString(0);
@@ -63,6 +68,9 @@ public class AbsenActivity extends AppCompatActivity {
 
             absenArrayList.add(absen);
         }
+
+        if(!(absenArrayList.size() < 1))
+            rv.setAdapter(adapter);
     }
 
 }

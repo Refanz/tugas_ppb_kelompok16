@@ -33,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
                 if(checkEmailPass){
                     Toast.makeText(LoginActivity.this, "Login successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                    intent.putExtra("email", email);
                     startActivity(intent);
+                    finish();
                 }else{
                     Toast.makeText(LoginActivity.this, "Email/Password is doesn't exists", Toast.LENGTH_SHORT).show();
                 }

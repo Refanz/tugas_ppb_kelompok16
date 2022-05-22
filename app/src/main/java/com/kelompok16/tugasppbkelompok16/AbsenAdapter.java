@@ -50,9 +50,8 @@ public class AbsenAdapter extends RecyclerView.Adapter<AbsenAdapter.MyViewHolder
 
         private TextView txtNIM, txtNama, txtTanggal, txtStatus;
 
-        public MyViewHolder(@NonNull View itemView) {
+        MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             txtNIM = (TextView) itemView.findViewById(R.id.txtANIM);
             txtNama = (TextView) itemView.findViewById(R.id.txtANama);
             txtTanggal = (TextView) itemView.findViewById(R.id.txtATanggal);
