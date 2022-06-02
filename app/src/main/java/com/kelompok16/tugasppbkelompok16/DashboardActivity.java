@@ -23,7 +23,7 @@ import java.util.UUID;
 public class DashboardActivity extends AppCompatActivity {
 
     private ImageView icBarcode, icAbsen, icLogout, icJadwal, imgProfile;
-    private TextView txtNamaDash;
+    private TextView txtNamaDash, txtNIMDash;
     private DBHelper myDB;
     private String emailLogin;
 
@@ -48,6 +48,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         icAbsen.setOnClickListener(v -> {
             Intent intent = new Intent(DashboardActivity.this, AbsenActivity.class);
+            intent.putExtra("nimLogin", txtNIMDash.getText());
             startActivity(intent);
         });
 
@@ -78,6 +79,7 @@ public class DashboardActivity extends AppCompatActivity {
         icJadwal = (ImageView) findViewById(R.id.ic_jadwal);
         imgProfile = (ImageView) findViewById(R.id.imgProfile);
         txtNamaDash = (TextView) findViewById(R.id.txtNamaDashboard);
+        txtNIMDash = (TextView) findViewById(R.id.txtNIMDashboard);
         myDB = new DBHelper(DashboardActivity.this);
     }
 
@@ -87,16 +89,25 @@ public class DashboardActivity extends AppCompatActivity {
 
         if(emailLogin.equals("refandasuryasaputra@gmail.com")){
             txtNamaDash.setText("Refanda Surya Saputra");
+            txtNIMDash.setText("21120120120022");
         }else if(emailLogin.equals("imamnuralim@gmail.com")){
             txtNamaDash.setText("Imam Nuralim");
+            txtNIMDash.setText("21120120120016");
         }else if(emailLogin.equals("muhammadghulamabdul@gmail.com")){
             txtNamaDash.setText("Muhammad Ghulam Abdul Nasr");
+            txtNIMDash.setText("21120120120029");
         }else if(emailLogin.equals("muhammadrafianwar@gmail.com")){
             txtNamaDash.setText("Muhammad Rafi Anwar");
+            txtNIMDash.setText("21120120140174");
         }else if(emailLogin.equals("fatihrizkyhakim@gmail.com")){
             txtNamaDash.setText("Fatih Rizky Hakim");
+            txtNIMDash.setText("21120120140170");
         }else if(emailLogin.equals("hafizhanjarsaputra@gmail.com")){
             txtNamaDash.setText("Hafizh Anjar Saputra");
+            txtNIMDash.setText("21120120140143");
+        }else{
+            txtNIMDash.setText("Nama Lengkap");
+            txtNIMDash.setText("NIM");
         }
     }
 

@@ -104,6 +104,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return myDB.query("tb_absen", columns, null, null, null, null, null);
     }
 
+    public Cursor getDataAbsen(String nim){
+        SQLiteDatabase myDB = this.getWritableDatabase();
+        Cursor c = myDB.rawQuery("SELECT * FROM tb_absen WHERE nim = ?", new String[] {nim});
+        return c;
+    }
+
     public void deleteAllTableAbsen(){
         SQLiteDatabase myDb = this.getWritableDatabase();
         myDb.execSQL("DELETE FROM tb_absen");

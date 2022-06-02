@@ -1,5 +1,6 @@
 package com.kelompok16.tugasppbkelompok16;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ public class AbsenActivity extends AppCompatActivity {
     private RecyclerView rv;
     private ArrayList<Absen> absenArrayList;
     private AbsenAdapter adapter;
+    private String nim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +31,20 @@ public class AbsenActivity extends AppCompatActivity {
 
         showRecyclerview();
 
-        showData();
+        getDataIntent();
+
+        showData(nim);
 
     }
 
     void showRecyclerview(){
         rv.setLayoutManager(new LinearLayoutManager(AbsenActivity.this));
         rv.setAdapter(adapter);
+    }
+
+    void getDataIntent(){
+        Intent intent = getIntent();
+        nim = intent.getStringExtra("nimLogin");
     }
 
     void initWidget() {
@@ -45,10 +54,10 @@ public class AbsenActivity extends AppCompatActivity {
         adapter = new AbsenAdapter(absenArrayList);
     }
 
-    void showData() {
+    void showData(String nims) {
         absenArrayList.clear();
 
-        Cursor c = myDB.showDataAbsenRecyclerView();
+        Cursor c = myDB.getDataAbsen(nims);
         while (c.moveToNext()) {
             String id = c.getString(0);
             String nim = c.getString(1);
